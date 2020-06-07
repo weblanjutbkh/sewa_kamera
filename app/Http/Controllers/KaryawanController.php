@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Karyawan;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +18,9 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        //
+        $title="Karyawan";
+        $karyawan= Karyawan::paginate(5);
+        return view('admin.karyawan', compact('title','karyawan'));
     }
 
     /**
@@ -23,7 +30,8 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Input Data Karyawan";
+        return view('admin.inputkaryawan', compact('title'));
     }
 
     /**
@@ -34,7 +42,20 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => 'Kolom :attribute harus diisi',
+            'required' => 'Kolom :attribute harus diisi',
+            'required' => 'Kolom :attribute harus diisi',
+            'required' => 'Kolom :attribute harus diisi'
+        ];
+        $validasi = $request->validate([
+            'id' => 'required',
+            'nama_karyawan' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required'
+        ],$messages);
+        $karyawan=Karyawan::create($validasi);
+        return redirect('karyawan')->with('success','Data berhasil diupdate');
     }
 
     /**
@@ -56,7 +77,9 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title= 'Edit Data Karyawan';
+        $karyawan =Karyawan::find($id);
+        return view('admin.inputkaryawan', compact('karyawan','title'));
     }
 
     /**
@@ -68,7 +91,20 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required' => 'Kolom :attribute harus diisi',
+            'required' => 'Kolom :attribute harus diisi',
+            'required' => 'Kolom :attribute harus diisi',
+            'required' => 'Kolom :attribute harus diisi'
+        ];
+        $validasi = $request->validate([
+            'id' => 'required',
+            'nama_karyawan' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required'
+        ],$messages);
+        $karyawan=Karyawan::whereid($id)->update($validasi);
+        return redirect('karyawan')->with('success','Data berhasil diupdate');
     }
 
     /**
@@ -79,6 +115,7 @@ class KaryawanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Karyawan::whereid($id)->delete();
+        return redirect('karyawan')->with('success','Data berhasil diupdate');
     }
 }
