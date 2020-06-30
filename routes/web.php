@@ -22,4 +22,9 @@ Route::resource('kamera','KameraController');
 
 route::get('/', 'KameraController@index');
 
-route::get('/transaksi', 'TransaksiController@index');
+//route::get('/transaksi', 'TransaksiController@index');
+route::get('/pembayaran', 'PembayaranController@index');
+route::get('/transaksi', 'CartsController@index');
+route::delete('/{cart}','CartsController@destroy');
+route::get('/{cart}/edit', 'CartsController@edit');
+route::patch('/{cart}', 'CartsController@update');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
@@ -13,8 +14,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $transaksi = DB::table('carts')->get();
         $title="transaksi";
-        return view('user.transaksi', compact('title'));
+        return view('user.transaksi', compact('transaksi'));
     }
 
     /**

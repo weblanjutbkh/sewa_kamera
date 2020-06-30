@@ -14,7 +14,7 @@ class KameraController extends Controller
     public function index()
     {
         $title="Kamera";
-        return view('admin.kamera', compact('title'));
+        return view('user.dasboard', compact('title'));
     }
 
     /**
