@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Kamera;
 use Illuminate\Http\Request;
 
+
 class KameraController extends Controller
 {
     public function __construct()

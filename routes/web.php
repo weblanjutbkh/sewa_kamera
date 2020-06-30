@@ -21,5 +21,4 @@ Route::resource('kamera','KameraController');
 
 Route::resource('karyawan','KaryawanController');
 Auth::routes();
-
 Route::get('/home', 'KameraController@index')->name('home');

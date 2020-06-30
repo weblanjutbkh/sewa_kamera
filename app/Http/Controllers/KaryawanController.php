@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Karyawan;
 use Illuminate\Http\Request;
 
+
 class KaryawanController extends Controller
 {
     public function __construct()
